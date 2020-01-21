@@ -1,0 +1,9 @@
+Cookies.remove('items', { path: '/' });
+Cookies.remove('sub_total', { path: '/' });
+Cookies.remove('total', { path: '/' });
+Cookies.remove('delivery_option', { path: '/' });
+Cookies.remove('percentage_discount', { path: '/' });
+Cookies.remove('delivey_fee', { path: '/' });
+Cookies.remove('minimum_order', { path: '/' });
+Cookies.remove('basketitems', { path: '/' });
+Cookies.remove('additional_message', { path: '/' });
