@@ -26,8 +26,8 @@
       {!! csrf_field() !!}
 
       <div class="form-group">
-          {!! Form::label('transaction_id', '') !!}
-          {!! Form::text( 'transaction_id', null, array( 'class' => 'form-control', 'id' => 'transaction_id', 'placeholder' => 'Transaction ID eg. 1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d', 'required')) !!}
+          {!! Form::label('Transaction Id', '') !!}
+          {!! Form::text( 'tx_id', null, array( 'class' => 'form-control', 'id' => 'tx_id', 'placeholder' => 'Transaction ID eg. 1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d', 'required')) !!}
      </div>
 
 

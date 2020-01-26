@@ -23,10 +23,21 @@
 	<div id="" class="col-md-4">
 
   <br/><br/><br/><br/><br/>
-	<div id="" class="well" style=""> Flagged information </div>
+
+    @if(count($metadata) > 0)
+    <div id="" class="well" style="">
+      <ol>
+      @foreach($metadata as $data)
+        <li>{{ $data->metadata }}</li>
+      @endforeach
+      </ol>
+      </div>
+    @endif
+
+
 
 	<div id="" class="" style="">
-		{!! Form::open(array('url' => 'flag-information/submit', 'class' => 'well')) !!}
+		{!! Form::open(array('url' => 'block-hash/add', 'class' => 'well')) !!}
 
       @if ( $errors->any() )
        <ul class="alert alert-danger">
@@ -46,14 +57,18 @@
       {!! csrf_field() !!}
 
       <div class="form-group">
-          {!! Form::label('transaction_id', '') !!}
-          {!! Form::text( 'transaction_id', null, array( 'class' => 'form-control', 'id' => 'transaction_id', 'placeholder' => 'Transaction ID eg. 1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d', 'required')) !!}
+          <input required="required" name="block_hash" type="hidden" value="{{ $request->block_hash }}" />
      </div>
 
 
+      <div class="form-group">
+          {!! Form::label('Block Metadata', '') !!}
+          {!! Form::text( 'metadata', null, array( 'class' => 'form-control', 'id' => 'metadata', 'placeholder' => 'eg. This block has transactions that have been involved in illicit activities.', 'required')) !!}
+     </div>
+
 
       <div class="form-group">
-        {!! Form::submit( 'Search Block', array( 'class' => 'form-control btn btn-info', 'id' => '',  )) !!}
+        {!! Form::submit( 'Add metadata', array( 'class' => 'form-control btn btn-info', 'id' => '',  )) !!}
       </div>
 
   {!! Form::close() !!}
