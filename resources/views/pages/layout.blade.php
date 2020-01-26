@@ -25,16 +25,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Forensic App</a>
+					<a class="navbar-brand" href="#">Forensic App</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-head-collapse">
 					<ul class="nav navbar-nav">
 
-						<li class=""><a href="/">Transactions</a></li>
-						<li class=""><a href="/">Wallet</a></li>
-						<li class=""><a href="/">Blocks</a></li>
+						<li class=""><a href="/">Block Height</a></li>
+						<li class=""><a href="/block-hash">Block Hash</a></li>
+						<li class=""><a href="/transaction">Transaction</a></li>
+						<li class=""><a href="/address">Wallet Address</a></li>
 
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -62,11 +63,33 @@
 </div>
 
 
-<!-- JavaScript -->
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"  ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" ></script>
-<script src="/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"  ></script>
+<script src="https://github.com/zachofalltrades/jquery.format/blob/master/jquery.format.js"  ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    var jsonObj = JSON.parse(document.getElementById("jsondata").innerHTML);
+    document.getElementById("jsondata").innerHTML = JSON.stringify(jsonObj, undefined, 4);
+    document.getElementById("jsondata").style.display = 'block';
+
+
+	var doc = new jsPDF();
+	var specialElementHandlers = {
+	    '#jsondata': function (element, renderer) {
+	        return true;
+	    }
+	};
+
+	$('#generate-pdf').click(function () {
+	    doc.fromHTML($('#jsondata').html(), 15, 15, {
+	        'width': 170, 'elementHandlers': specialElementHandlers
+	    });
+	    doc.save('sample-file.pdf');
+	});
+
+
+</script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

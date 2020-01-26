@@ -1,0 +1,66 @@
+sudo -u root cat >> ~/.bash_profile <<EOF
+alias btcdir="cd ~/.bitcoin/" #linux default bitcoind path
+alias bc="bitcoin-cli"
+alias bd="bitcoind"
+alias btcinfo='bitcoin-cli getwalletinfo | egrep "\"balance\""; bitcoin-cli getnetworkinginfo | egrep "\"version\"|connections"; bitcoin-cli getmininginfo | egrep "\"blocks\"|errors"'
+# next alias not working; blockexplorer.com is not redirecting properly
+ alias btcblock="echo \\\`bitcoin-cli getblockcount 2>&1\\\`/\\\`wget -O - http://blockexplorer.com/testnet/q/getblockcount 2> /dev/null | cut -d : -f2 | rev | cut -c 2- | rev\\\`"
+EOF
+
+
+getblockchaininfo
+getmempoolinfo
+gettxoutsetinfo
+getmemoryinfo ("mode")
+getmininginfo
+getaddednodeinfo ( "node" )
+getnetworkinfo
+getpeerinfo
+getaddressinfo "address"
+getwalletinfo
+
+
+
+bc getaddressinfo 1DPjCTDjhmJnaB4j7MpV4E6hBHpdmFgExT
+{
+  "address": "1DPjCTDjhmJnaB4j7MpV4E6hBHpdmFgExT",
+  "scriptPubKey": "76a91487ede29de06925d02f5f5bb052dccb1a2b81abd988ac",
+  "ismine": false,
+  "iswatchonly": false,
+  "isscript": false,
+  "iswitness": false,
+  "labels": [
+  ]
+}
+
+
+Created following wallets:
+[root@ip-10-0-0-228 ~]# bitcoin-cli getnewaddress "legacy_wallet" legacy
+12fw3oyfrRkKNjJYyZD6yVa9jcJzv8ovtU
+[root@ip-10-0-0-228 ~]# bitcoin-cli getnewaddress "p2sh_segwit_wallet" p2sh-segwit
+35aQMECLNVrMTMWqmCDhD2BnQ1bCrZar4e
+[root@ip-10-0-0-228 ~]# bitcoin-cli getnewaddress "bech32_wallet" bech32
+bc1qvlukzn0w8cs7myyv5lczqaer0vywahsqe5taqd
+
+
+The whole blockchain is immutable, which means that explorers can look at long chains of transactions over time, making it possible to statistically determine who you and your contacts are, no matter how careful you are. However, if you keep reusing the same address, then this becomes even easier.
+
+
+[root@ip-10-0-0-228 ~]# bc getrawchangeaddress
+3CytVUmacwJoqjBvLjFKnzWuU6QwKNMJdK
+
+
+
+# testnet
+bitcoin-cli getnewaddress "legacy_wallet" legacy
+mm7GnQJsL8tvJrJKWjyk2b7RPRJwJ22Qc7
+
+bitcoin-cli getnewaddress "p2sh_segwit_wallet" p2sh-segwit
+2NFteigj3LVfCPed6MdTkEzT4KYpdM2SJf8
+
+bitcoin-cli getnewaddress "bech32_wallet" bech32
+tb1qyyu7ly6g5aw53apethxtdxrn9c637jkhnx0h6e
+
+bitcoin-cli getrawchangeaddress
+2MwSPpC8rNhd4ynJyoHNT1DW3V4bACJQ89K
+

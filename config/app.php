@@ -39,7 +39,7 @@ return [
 		    |
 	*/
 
-	'url' => env('APP_URL', 'https://www.royalgurkha.com'),
+	'url' => env('APP_URL', ''),
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -161,6 +161,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 
 		Laracasts\Flash\FlashServiceProvider::class,
+		Denpa\Bitcoin\Providers\ServiceProvider::class,
 
 	],
 
@@ -210,6 +211,7 @@ return [
 
 		'Form' => Collective\Html\FormFacade::class,
 		'Html' => Collective\Html\HtmlFacade::class,
+		'Bitcoind' => Denpa\Bitcoin\Facades\Bitcoind::class,
 
 	],
 
