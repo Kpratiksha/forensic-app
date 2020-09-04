@@ -5,7 +5,7 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
-    "node-sass": "3.8.0",
+    "node-sass": "4.14.1",
     "bootstrap-sass": "3.4.1",
     "gulp": "^3.9.1",
     "font-awesome": "^4.6.3",
